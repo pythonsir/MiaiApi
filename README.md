@@ -1,66 +1,12 @@
-![apic](http://webtools.qiniudn.com/master-LOGO-20150410_50.jpg)  
 
-# [PhalApi 2.4.2 - 接口，从简单开始！](https://www.phalapi.net/) 
-
-[![Latest Stable Version](https://poser.pugx.org/phalapi/phalapi/v/stable)](https://packagist.org/packages/phalapi/phalapi)
-[![Total Downloads](https://poser.pugx.org/phalapi/phalapi/downloads)](https://packagist.org/packages/phalapi/phalapi)
-[![Latest Unstable Version](https://poser.pugx.org/phalapi/phalapi/v/unstable)](https://packagist.org/packages/phalapi/phalapi)
-[![License](https://poser.pugx.org/phalapi/phalapi/license)](https://packagist.org/packages/phalapi/phalapi)
-
-## 独家赞助商
-此版本由[（点击成为）](https://www.phalapi.net/ad.html)独家赞助。  
-
-## 快速安装
-
-### composer一键安装
-
-使用composer创建项目的命令，可实现一键安装。
-
-```bash
-$ composer create-project phalapi/phalapi
-```
-> 温馨提示：关于composer的使用，请参考[Composer 中文网 / Packagist 中国全量镜像](http://www.phpcomposer.com/)。
-
-### 手动下载安装
-
-或者，也可以进行手动安装。将此Git项目代码下载解压后，进行可选的composer更新，即：  
-```bash
-$ composer update
-```
-
-### 访问接口服务
-
-随后，可通过以下链接，访问默认接口服务。  
-```
-http://localhost/path/to/phalapi/public/
-```
-可以看到类似这样的输出：  
-```
-{
-    "ret": 200,
-    "data": {
-        "title": "Hello PhalApi",
-        "version": "2.4.2",
-        "time": 1501079142
-    },
-    "msg": ""
-}
-```
-
-运行效果，截图如下：  
-
-![](http://7xiz2f.com1.z0.glb.clouddn.com/20170726223129_eecf3d78826c5841020364c852c35156)
+# MiaiApi - 相亲类小程序[Miai](https://github.com/pythonsir/Miai)的接口服务
 
 
-> 温馨提示：推荐将访问根路径指向/path/to/phalapi/public。
+## 开发教程
+1. [使用Taro开发一款相亲类微信小程序-开发环境搭建](https://mp.weixin.qq.com/s?__biz=Mzg3MTA2MjYwMQ==&mid=2247483660&idx=1&sn=1955da4b213ec53608aa88f7d749a23a&chksm=ce850c2af9f2853cdaf96a873c68707f7fcf7feec1f725ef66725dafa1575f821a334bf7c6c1&token=1899004446&lang=zh_CN#rd)
+2. [使用Taro开发一款相亲类微信小程序-基础配置](https://mp.weixin.qq.com/s?__biz=Mzg3MTA2MjYwMQ==&mid=2247483671&idx=1&sn=95bb8f1e35583243d8ee75cebf8d1985&chksm=ce850c31f9f2852790d5cc875065a79b6db8c351dc5b990b81c18f075fcf9094c41d4360a1da&token=1899004446&lang=zh_CN#rd)
+2. [使用Taro开发一款相亲类微信小程序--小程序登录以及获取用户信息](https://mp.weixin.qq.com/s?__biz=Mzg3MTA2MjYwMQ==&mid=2247483681&idx=1&sn=5bba707942583d9ce9aa14371d11d06b&chksm=ce850c07f9f285116b46072c4b311a85e245fb701fcf8c618058c54fa94ed49aca580ac7aa6a&token=1899004446&lang=zh_CN#rd)
 
-## 文档
-更多请查看：[PhalApi 2.x 开发文档](http://docs.phalapi.net/#/v2.0/)。  
-
-## PhalApi官方创新项目
-
- + [小白接口](https://www.okayapi.com/?f=github)
-
-## 发现问题，怎么办？  
-
-如发现问题，或者任何问题，欢迎提交Issue到[这里](https://github.com/phalapi/phalapi/issues)。
+## 学习交流
+更多教程都会在第一时间发布在公众号 **老夫撸代码**,欢迎各位童鞋关注交流技术。
+![老夫撸代码](http://qiniu.cdn.colorlib.cn/lfqrcode.jpg)
