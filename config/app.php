@@ -43,7 +43,7 @@ return array(
 
         'log' => [
             'level' => 'debug',
-            'file' =>   __DIR__.'../runtime/wechat.log',
+            'file' =>   __DIR__.'/../runtime/wechat.log',
         ],
     ),
 );
