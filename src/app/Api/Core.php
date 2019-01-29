@@ -24,6 +24,11 @@ class  Core extends Api
                 'nickName' => array('name' => 'nickName'),
                 'avatarUrl' => array('name' => 'avatarUrl'),
                 'session3rd' => array('name' => 'session3rd'),
+            ),
+            'getPhone' => array(
+                'encryptedData' => array('name' => 'encryptedData'),
+                'iv' => array('name' => 'iv'),
+                'session3rd' => array('name' => 'session3rd')
             )
         );
     }
@@ -69,6 +74,37 @@ class  Core extends Api
         );
 
         return $domain->saveWeixinInfo($res,$params);
+
+    }
+
+    /**
+     *  获取小程序用户手机号
+     */
+    public function getPhone(){
+
+        global $miniApp;
+
+        $encryptedData = $this->encryptedData;
+
+        $iv = $this->iv;
+
+        $domain = new CoreDomain();
+
+        $res = $domain->getOpenidBySession3rd($this->session3rd);
+
+        $session_key = $res['session_key'];
+
+        \PhalApi\DI()->logger->info("获取用户手机号", array("encryptedData" => $encryptedData,"iv" => $iv,"openid" => $session_key));
+
+        $decryptedData = $miniApp->encryptor->decryptData($session_key, $iv, $encryptedData);
+
+        $params = array(
+            'updatedAt' => date('Y-m-d H:m:s'),
+            'phone' => $decryptedData['purePhoneNumber'],
+            'countryCode' => $decryptedData['countryCode']
+        );
+
+       return  $domain->saveWeixinInfo($res,$params);
 
     }
 }
