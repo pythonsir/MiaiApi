@@ -20,7 +20,8 @@
         "phalapi/qrcode": "dev-master",
         "phalapi/cli": "dev-master",
         "phalapi/task": "dev-master",
-        "overtrue/wechat": "~4.0"
+        "overtrue/wechat": "~4.0",
+        "alibabacloud/client": "^1.0@dev"
     },
     "autoload": {
         "files": [

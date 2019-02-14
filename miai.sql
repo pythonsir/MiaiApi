@@ -11,7 +11,7 @@
  Target Server Version : 50633
  File Encoding         : utf-8
 
- Date: 01/25/2019 09:41:00 AM
+ Date: 02/14/2019 15:24:14 PM
 */
 
 SET NAMES utf8;
@@ -26,6 +26,18 @@ CREATE TABLE `tb_session3rd` (
   `session_key` varchar(255) NOT NULL,
   `openid` varchar(255) NOT NULL,
   `expires_in` int(4) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Table structure for `tb_sms`
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_sms`;
+CREATE TABLE `tb_sms` (
+  `id` varchar(255) NOT NULL,
+  `phone` varchar(11) DEFAULT NULL,
+  `code` varchar(4) DEFAULT NULL,
+  `createdAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -70,11 +82,13 @@ CREATE TABLE `tb_user` (
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_weixin`;
 CREATE TABLE `tb_weixin` (
-  `openId` varbinary(255) NOT NULL,
+  `openId` varchar(255) NOT NULL,
   `nickName` varchar(255) DEFAULT NULL,
   `avatarUrl` varchar(255) DEFAULT NULL,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
+  `phone` varchar(11) DEFAULT NULL,
+  `countryCode` varchar(11) DEFAULT NULL,
   PRIMARY KEY (`openId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

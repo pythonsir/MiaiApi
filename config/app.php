@@ -34,8 +34,8 @@ return array(
      */
     'miniProgram' => array(
 
-        'app_id' => 'wxfa0f395892ef5f26',
-        'secret' => 'e5300cfcbdc92b7b5dd70b81d4954c05',
+        'app_id' => '',
+        'secret' => '',
 
         // 下面为可选项
         // 指定 API 调用返回结果的类型：array(default)/collection/object/raw/自定义类名
@@ -45,5 +45,16 @@ return array(
             'level' => 'debug',
             'file' =>   __DIR__.'/../runtime/wechat.log',
         ],
+    ),
+    /**
+     * 阿里云配置
+     */
+    'AlibabaCloud' => array(
+        'sms' => array(
+            'AccessKey' => '',
+            'AccessKeySecret' => '',
+            'SignName' => '阿里云短信测试专用',
+            'RegisterTemplateCode' => 'SMS_89515010',
+        )
     ),
 );

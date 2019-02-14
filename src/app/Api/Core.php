@@ -28,8 +28,19 @@ class  Core extends Api
             'getPhone' => array(
                 'encryptedData' => array('name' => 'encryptedData'),
                 'iv' => array('name' => 'iv'),
-                'session3rd' => array('name' => 'session3rd')
+                'session3rd' => array('name' => 'session3rd'),
+            ),
+            'sendSms' => array(
+                'session3rd' => array('name' => 'session3rd'),
+                'phone' => array('name' => 'phone'),
+            ),
+            'bindPhone' => array(
+                'id' => array('name' => 'id'),
+                'session3rd' => array('name' => 'session3rd'),
+                'phone' => array('name' => 'phone'),
+                'smscode' => array('name' => 'smscode')
             )
+
         );
     }
 
@@ -94,7 +105,7 @@ class  Core extends Api
 
         $session_key = $res['session_key'];
 
-        \PhalApi\DI()->logger->info("获取用户手机号", array("encryptedData" => $encryptedData,"iv" => $iv,"openid" => $session_key));
+        \PhalApi\DI()->logger->info("获取用户手机号", array("encryptedData" => $encryptedData,"iv" => $iv,"session_key" => $session_key));
 
         $decryptedData = $miniApp->encryptor->decryptData($session_key, $iv, $encryptedData);
 
@@ -107,4 +118,44 @@ class  Core extends Api
        return  $domain->saveWeixinInfo($res,$params);
 
     }
+
+    /**
+     *  发送阿里云短信验证码
+     */
+    public function  sendSms(){
+
+        $phone = $this->phone;
+
+        $domain = new CoreDomain();
+
+        $res = $domain->getOpenidBySession3rd($this->session3rd);
+
+        $openid = $res['openid'];
+
+        \PhalApi\DI()->logger->info("发送手机号验证码", array("phone" => $phone,"openid" => $openid));
+
+        return $domain -> sendsms($phone,$openid);
+
+    }
+
+
+    /**
+     * 绑定手机号
+     */
+    public function bindPhone(){
+
+        $id = $this->id;
+
+        $phone = $this -> phone;
+
+        $domain = new CoreDomain();
+
+        $res = $domain->getOpenidBySession3rd($this->session3rd);
+
+        $openid = $res['openid'];
+
+        return $domain->bindPhone($id,$phone,$this->smscode,$domain,$openid);
+
+    }
+
 }
