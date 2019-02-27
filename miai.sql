@@ -11,7 +11,7 @@
  Target Server Version : 50633
  File Encoding         : utf-8
 
- Date: 02/14/2019 15:24:14 PM
+ Date: 02/27/2019 17:51:09 PM
 */
 
 SET NAMES utf8;
@@ -46,36 +46,24 @@ CREATE TABLE `tb_sms` (
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_user`;
 CREATE TABLE `tb_user` (
-  `id` int(6) NOT NULL AUTO_INCREMENT,
-  `nickName` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `avatar` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `sex` int(1) NOT NULL,
-  `birthday` date NOT NULL,
-  `height` int(4) DEFAULT NULL,
-  `education` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `marital` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `career` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `profession` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `havecar` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `havehouse` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `referrer` int(6) DEFAULT NULL,
-  `zodiac` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `constellation` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `livingArea` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `unitNature` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `gender` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
   `province` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `province_code` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `city` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `city_code` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `annual_salary` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `county` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `year` varchar(5) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `month` varchar(5) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `day` varchar(5) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `height` varchar(5) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `education` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `marriage` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `income` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `openid` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `is_finish` int(1) DEFAULT '0',
   `createdAt` date DEFAULT NULL,
   `updatedAt` date DEFAULT NULL,
-  `openid` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `wx_avatar` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `wx_nickname` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `is_finish` int(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1006 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 -- ----------------------------
 --  Table structure for `tb_weixin`
