@@ -2,30 +2,80 @@
 namespace App\Api;
 
 use PhalApi\Api;
+use App\Domain\Core as CoreDomain;
+use App\Domain\User as UserDomain;
+use PhalApi\Exception;
 
 /**
+ * pythonsir
+ * 微信:cxyzxh1388
+ * email:baidu211@vip.qq.com
+ *
  * 用户模块接口服务
  */
 class User extends Api {
     public function getRules() {
         return array(
-            'login' => array(
-                'username' => array('name' => 'username', 'require' => true, 'min' => 1, 'max' => 50, 'desc' => '用户名'),
-                'password' => array('name' => 'password', 'require' => true, 'min' => 6, 'max' => 20, 'desc' => '密码'),
-            ),
+            'saveUserInfo' => array(
+                'session3rd' => array('name'=>'session3rd', 'require' => true),
+                'gender' => array('name' => 'gender', 'require' => true),
+                'province' => array('name' => 'province', 'require' => true),
+                'province' => array('name' => 'province', 'require' => true),
+                'county' => array('name' => 'county', 'require' => true),
+                'year' => array('name' => 'year', 'require' => true),
+                'month' => array('name' => 'month', 'require' => true),
+                'day' => array('name' => 'day', 'require' => true),
+                'height' => array('name' => 'height', 'require' => true),
+                'education' => array('name' => 'education', 'require' => true),
+                'marriage' => array('name' => 'marriage', 'require' => true),
+                'income' => array('name' => 'income', 'require' => true)
+            )
         );
     }
     /**
-     * 登录接口
+     * 更新用户信息
      * @desc 根据账号和密码进行登录操作
      * @return boolean is_login 是否登录成功
      * @return int user_id 用户ID
      */
-    public function login() {
-        $username = $this->username;   // 账号参数
-        $password = $this->password;   // 密码参数
-        // 更多其他操作……
+    public function saveUserInfo() {
 
-        return array('is_login' => true, 'user_id' => 8);
+        $params =[
+            "gender"=>$this->gender,
+            "province"=>$this->province,
+            "county"=>$this->county,
+            "year"=>$this->year,
+            "month"=>$this->month,
+            "day"=>$this->day,
+            "height"=>$this->height,
+            "education"=>$this->education,
+            "marriage"=>$this->marriage,
+            "income"=>$this->income,
+            "is_finish" => 1,
+            "createdAt"=>date('Y-m-d H:m:s')
+        ];
+
+        $domain = new CoreDomain();
+
+        $res = $domain->getOpenidBySession3rd($this->session3rd);
+
+        $params = array_merge($params,array("openid" => $res['openid']));
+
+        $userDomain = new UserDomain();
+
+        try{
+
+            \PhalApi\DI()->logger->info("保存个人信息", $params );
+
+            $userDomain->saveUserInfo($params);
+
+            return  json_encode(array("message" => "保存个人信息成功")) ;
+
+        }catch (Exception $e){
+
+            \PhalApi\DI()->logger->info("保存个人信息", $e->getMessage() );
+
+            return  array("message" => $e->getMessage());
+        }
     }
 } 

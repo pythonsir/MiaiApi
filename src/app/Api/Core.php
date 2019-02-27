@@ -95,27 +95,41 @@ class  Core extends Api
 
         global $miniApp;
 
-        $encryptedData = $this->encryptedData;
+        try{
 
-        $iv = $this->iv;
+            $encryptedData = $this->encryptedData;
 
-        $domain = new CoreDomain();
+            $iv = $this->iv;
 
-        $res = $domain->getOpenidBySession3rd($this->session3rd);
+            $domain = new CoreDomain();
 
-        $session_key = $res['session_key'];
+            $res = $domain->getOpenidBySession3rd($this->session3rd);
 
-        \PhalApi\DI()->logger->info("获取用户手机号", array("encryptedData" => $encryptedData,"iv" => $iv,"session_key" => $session_key));
+            $session_key = $res['session_key'];
 
-        $decryptedData = $miniApp->encryptor->decryptData($session_key, $iv, $encryptedData);
+            \PhalApi\DI()->logger->info("获取用户手机号", array("encryptedData" => $encryptedData,"iv" => $iv,"session_key" => $session_key));
 
-        $params = array(
-            'updatedAt' => date('Y-m-d H:m:s'),
-            'phone' => $decryptedData['purePhoneNumber'],
-            'countryCode' => $decryptedData['countryCode']
-        );
+            $decryptedData = $miniApp->encryptor->decryptData($session_key, $iv, $encryptedData);
 
-       return  $domain->saveWeixinInfo($res,$params);
+            $params = array(
+                'updatedAt' => date('Y-m-d H:m:s'),
+                'phone' => $decryptedData['purePhoneNumber'],
+                'countryCode' => $decryptedData['countryCode']
+            );
+            $domain->saveWeixinInfo($res,$params);
+
+            return true;
+
+        }catch (\Exception $e){
+
+            \PhalApi\DI()->logger->info("获取小程序用户手机号", $e->getMessage());
+
+            return false;
+        }
+
+
+
+
 
     }
 
@@ -144,17 +158,28 @@ class  Core extends Api
      */
     public function bindPhone(){
 
-        $id = $this->id;
+        try{
 
-        $phone = $this -> phone;
+            $id = $this->id;
 
-        $domain = new CoreDomain();
+            $phone = $this -> phone;
 
-        $res = $domain->getOpenidBySession3rd($this->session3rd);
+            $domain = new CoreDomain();
 
-        $openid = $res['openid'];
+            $res = $domain->getOpenidBySession3rd($this->session3rd);
 
-        return $domain->bindPhone($id,$phone,$this->smscode,$domain,$openid);
+            $openid = $res['openid'];
+
+            return $domain->bindPhone($id,$phone,$this->smscode,$domain,$openid);
+
+        }catch (\Exception $e){
+
+            \PhalApi\DI()->logger->info("绑定手机号", $e->getMessage());
+
+            return false;
+        }
+
+
 
     }
 

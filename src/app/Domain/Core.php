@@ -64,7 +64,7 @@ class Core {
 
         } else {
 
-            return array('msg' => '获取openid失败');
+            return  array('ret'=>201,'msg' => '获取openid失败');
 
         }
     }
@@ -132,17 +132,9 @@ class Core {
 
         $smsmodel = new Sms();
 
-        if($smsmodel -> checkCode($id,$smscode)){ //验证通过
+        return $smsmodel -> checkCode($id,$smscode);
 
-            //TODO 保存个人信息到数据库
 
-            return true;
-
-        }else{
-
-            return false;
-
-        }
 
 
     }
