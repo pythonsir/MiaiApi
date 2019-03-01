@@ -33,10 +33,7 @@ class User extends Api {
         );
     }
     /**
-     * 更新用户信息
-     * @desc 根据账号和密码进行登录操作
-     * @return boolean is_login 是否登录成功
-     * @return int user_id 用户ID
+     * 保存用户信息
      */
     public function saveUserInfo() {
 
@@ -69,13 +66,13 @@ class User extends Api {
 
             $userDomain->saveUserInfo($params);
 
-            return  json_encode(array("message" => "保存个人信息成功")) ;
+            return  true ;
 
         }catch (Exception $e){
 
             \PhalApi\DI()->logger->info("保存个人信息", $e->getMessage() );
 
-            return  array("message" => $e->getMessage());
+            return false;
         }
     }
 } 
