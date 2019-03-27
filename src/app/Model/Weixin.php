@@ -17,13 +17,16 @@ class Weixin extends NotORM
      */
     public function saveOrUpdate($data){
 
+
+        \PhalApi\DI()->logger->info('插入获取更新用户信息 $data', $data);
+
         $update = $data;
 
         unset($update['openId'],$update['createdAt']);
 
         $update['updatedAt'] = date('Y-m-d H:m:s');
 
-        \PhalApi\DI()->logger->info('插入获取更新用户信息', $data);
+        \PhalApi\DI()->logger->info('插入获取更新用户信息 $update', $update);
 
         return $this->getORM()->insert_update(['openId' => $data['openId']],$data,$update);
 

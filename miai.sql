@@ -11,7 +11,7 @@
  Target Server Version : 50633
  File Encoding         : utf-8
 
- Date: 02/27/2019 17:51:09 PM
+ Date: 03/27/2019 11:41:21 AM
 */
 
 SET NAMES utf8;
@@ -63,7 +63,7 @@ CREATE TABLE `tb_user` (
   `createdAt` date DEFAULT NULL,
   `updatedAt` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1006 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 -- ----------------------------
 --  Table structure for `tb_weixin`
