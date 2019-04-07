@@ -29,6 +29,9 @@ class User extends Api {
                 'education' => array('name' => 'education', 'require' => true),
                 'marriage' => array('name' => 'marriage', 'require' => true),
                 'income' => array('name' => 'income', 'require' => true)
+            ),
+            'getUserinfo' => array(
+                'session3rd' => array('name'=>'session3rd', 'require' => true)
             )
         );
     }
@@ -74,5 +77,19 @@ class User extends Api {
 
             return false;
         }
+    }
+
+    public function getUserinfo(){
+
+        $domain = new CoreDomain();
+
+        $res = $domain->getOpenidBySession3rd($this->session3rd);
+
+        $userDomain = new UserDomain();
+
+        $result = $userDomain -> getUserInfo($res['openid'],$userDomain::USER_IS_FINISH);
+
+        return $result;
+
     }
 } 

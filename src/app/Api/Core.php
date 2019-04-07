@@ -84,6 +84,8 @@ class  Core extends Api
             'createdAt' => date('Y-m-d H:m:s'),
         );
 
+        \PhalApi\DI()->logger->info("保存微信信息", $params);
+
         return $domain->saveWeixinInfo($res,$params);
 
     }

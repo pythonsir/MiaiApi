@@ -60,6 +60,7 @@ class Core {
             } else if ($result === false) {
                 $rs['msg'] = '保存失败';
             }
+
             return $rs;
 
         } else {
@@ -133,8 +134,6 @@ class Core {
         $smsmodel = new Sms();
 
         return $smsmodel -> checkCode($id,$smscode);
-
-
 
 
     }

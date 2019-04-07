@@ -29,7 +29,15 @@ class User extends NotORM
 
         }
 
+    }
 
+    public function getUserInfo($openid,$isfinish){
+
+      $row =  $this->getORM()->where('openid = ?',$openid)->where('is_finish = ?',$isfinish)->fetchOne();
+
+        \PhalApi\DI()->logger->info("查询是否存在用户信息", $row);
+
+        return $row;
 
     }
 
